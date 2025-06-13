@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import '../index.css'; // 確保自訂 CSS（如 .line-clamp-3）有載入
 
 const ActivitiesPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -141,7 +142,7 @@ const ActivitiesPage = () => {
       {/* Activities Grid */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
             {filteredActivities.map((activity, index) => (
               <motion.div
                 key={activity.id}
@@ -150,7 +151,7 @@ const ActivitiesPage = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
-                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col"
               >
                 <div className="relative">
                   <img
@@ -173,7 +174,7 @@ const ActivitiesPage = () => {
                   </div>
                 </div>
 
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <h3 className="text-xl font-bold text-gray-800 mb-3">
                     {activity.title}
                   </h3>
@@ -181,10 +182,10 @@ const ActivitiesPage = () => {
                     <span className="mr-2">📍</span>
                     {activity.location}
                   </div>
-                  <p className="text-gray-600 leading-relaxed mb-4 text-sm">
+                  <p className="text-gray-600 leading-relaxed mb-4 text-sm line-clamp-3">
                     {activity.description}
                   </p>
-                  
+                  <hr className="my-3 border-gray-200" />
                   {/* Progress Bar */}
                   <div className="mb-4">
                     <div className="flex justify-between text-sm text-gray-600 mb-2">
@@ -198,8 +199,7 @@ const ActivitiesPage = () => {
                       />
                     </div>
                   </div>
-
-                  <div className="space-y-3">
+                  <div className="space-y-3 flex-grow min-h-[72px]">
                     <div>
                       <h4 className="font-medium text-gray-800 mb-2">參與條件：</h4>
                       <ul className="text-sm text-gray-600 space-y-1">
@@ -211,16 +211,15 @@ const ActivitiesPage = () => {
                         ))}
                       </ul>
                     </div>
-                    
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full bg-primary hover:bg-warmOrange text-white py-3 px-4 rounded-lg font-medium transition-all duration-300"
-                      disabled={activity.participants >= activity.maxParticipants}
-                    >
-                      {activity.participants >= activity.maxParticipants ? '已額滿' : '立即報名'}
-                    </motion.button>
                   </div>
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full bg-primary hover:bg-warmOrange text-white py-3 px-4 rounded-lg font-medium transition-all duration-300 mt-6"
+                    disabled={activity.participants >= activity.maxParticipants}
+                  >
+                    {activity.participants >= activity.maxParticipants ? '已額滿' : '立即報名'}
+                  </motion.button>
                 </div>
               </motion.div>
             ))}

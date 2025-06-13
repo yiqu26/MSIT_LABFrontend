@@ -42,7 +42,7 @@ const PurchasePage = () => {
       id: 3,
       name: "保暖衣物包",
       category: "clothing",
-      image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      image: "https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       price: 300,
       unit: "套",
       needed: 200,
@@ -152,7 +152,7 @@ const PurchasePage = () => {
       {/* Items Grid */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
             {filteredItems.map((item, index) => (
               <motion.div
                 key={item.id}
@@ -161,7 +161,7 @@ const PurchasePage = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
-                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col"
               >
                 <div className="relative">
                   <img
@@ -175,14 +175,14 @@ const PurchasePage = () => {
                   </div>
                 </div>
 
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <h3 className="text-xl font-bold text-gray-800 mb-3">
                     {item.name}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed mb-4 text-sm">
+                  <p className="text-gray-600 leading-relaxed mb-4 text-sm line-clamp-3 min-h-[48px]">
                     {item.description}
                   </p>
-
+                  <hr className="my-3 border-gray-200" />
                   {/* Progress Bar */}
                   <div className="mb-4">
                     <div className="flex justify-between text-sm text-gray-600 mb-2">
@@ -202,18 +202,16 @@ const PurchasePage = () => {
                       {Math.round((item.sponsored / item.needed) * 100)}% 完成
                     </div>
                   </div>
-
                   {/* Impact */}
-                  <div className="bg-secondary/10 p-3 rounded-lg mb-4">
+                  <div className="bg-secondary/10 p-3 rounded-lg mb-4 min-h-[56px]">
                     <div className="text-sm font-medium text-secondary mb-1">影響力</div>
                     <div className="text-sm text-gray-700">{item.impact}</div>
                   </div>
-
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => addToCart(item)}
-                    className="w-full bg-secondary hover:bg-softGreen text-white py-3 px-4 rounded-lg font-medium transition-all duration-300"
+                    className="w-full bg-secondary hover:bg-softGreen text-white py-3 px-4 rounded-lg font-medium transition-all duration-300 mt-6"
                   >
                     💝 認購物資
                   </motion.button>
