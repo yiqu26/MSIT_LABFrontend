@@ -5,6 +5,9 @@ import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import DonationFormPage from './pages/DonationFormPage';
+import ActivitiesPage from './pages/ActivitiesPage';
+import PurchasePage from './pages/PurchasePage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   return (
@@ -21,7 +24,31 @@ function App() {
             </Layout>
           } />
           
+          <Route path="/activities" element={
+            <Layout>
+              <ActivitiesPage />
+            </Layout>
+          } />
+          
+          <Route path="/purchase" element={
+            <Layout>
+              <PurchasePage />
+            </Layout>
+          } />
+          
+          <Route path="/contact" element={
+            <Layout>
+              <ContactPage />
+            </Layout>
+          } />
+          
           <Route path="/donate" element={
+            <Layout>
+              <DonationFormPage />
+            </Layout>
+          } />
+          
+          <Route path="/donations" element={
             <Layout>
               <DonationFormPage />
             </Layout>
@@ -31,19 +58,19 @@ function App() {
           <Route path="*" element={
             <Layout>
               <div className="min-h-screen flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">🤔</div>
+                <div className="text-center py-20">
+                  <div className="text-8xl mb-6">🤔</div>
                   <h1 className="text-4xl font-bold text-gray-800 mb-4">
                     找不到頁面
                   </h1>
-                  <p className="text-gray-600 mb-8">
+                  <p className="text-xl text-gray-600 mb-8">
                     抱歉，您所尋找的頁面不存在
                   </p>
                   <button
                     onClick={() => window.location.href = '/'}
-                    className="btn-primary"
+                    className="btn-primary text-lg py-3 px-6"
                   >
-                    回到首頁
+                    📍 回到首頁
                   </button>
                 </div>
               </div>
